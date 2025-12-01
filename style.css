@@ -22,6 +22,7 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* --- Grila Calendarului --- */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -59,38 +60,62 @@ h1 {
     cursor: not-allowed;
 }
 
-/* Stiluri pentru Fereastra Pop-up (Modal) */
+/* =========================================
+   FEREASTRA MODALĂ (SCROLL & POZIȚIE FIXATĂ)
+========================================= */
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 1; 
+    z-index: 1000; /* Să fie peste tot */
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
-    background-color: rgba(0,0,0,0.8); 
+    background-color: rgba(0,0,0,0.85); /* Fundal negru semi-transparent */
+    backdrop-filter: blur(5px); /* Blur în spate */
 }
 
 .modal-content {
-    background-color: #fff;
-    color: #333;
-    margin: 15% auto; 
-    padding: 20px;
-    border: 2px solid var(--gold);
-    border-radius: 15px;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
+    /* CULORI: */
+    background-color: #1a1a2e; 
+    color: #fff; 
+    border: 2px solid #f1c40f; 
+    
+    /* POZIȚIONARE ȘI MĂRIME (ESENȚIAL PENTRU SCROLL): */
     position: relative;
+    margin: 5vh auto; /* 5% distanță de sus */
+    width: 90%; 
+    max-width: 500px; /* Pe PC nu trece de 500px */
+    
+    /* SCROLL MAGNIFIC: */
+    max-height: 90vh; /* Înălțimea maximă e 90% din ecran */
+    overflow-y: auto; /* Activează scroll dacă e necesar */
+    
+    /* DESIGN: */
+    padding: 30px 20px; /* Padding mai mare sus pt butonul X */
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
+/* Stil bara de scroll (Chrome/Safari) */
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: #1a1a2e; }
+.modal-content::-webkit-scrollbar-thumb { background: #f1c40f; border-radius: 4px; }
+
+/* Butonul X de închidere */
 .close-btn {
     color: #aaa;
-    float: right;
-    font-size: 28px;
+    position: absolute; /* Fixat în colț */
+    top: 10px;
+    right: 15px;
+    font-size: 32px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 101;
+    line-height: 1;
 }
+.close-btn:hover { color: #f1c40f; }
 
 img, video {
     max-width: 100%;
@@ -111,6 +136,8 @@ img, video {
     box-shadow: 0 5px #962d22;
     transition: all 0.1s;
     margin-top: 20px;
+    width: 100%; /* Pe mobil arată mai bine full width */
+    max-width: 300px;
 }
 
 .christmas-btn:active {
@@ -118,151 +145,120 @@ img, video {
     transform: translateY(3px);
 }
 
-/* --- Ecranul Full Screen (Overlay) --- */
-#surprise-overlay {
-    display: none; /* Ascuns inițial */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: 9999; /* Peste orice altceva */
-    color: white;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Courier New', monospace;
-}
-
-/* Stilul pentru IT'S TIME */
-#time-text {
-    font-size: 3em;
-    font-weight: bold;
-    color: #e74c3c; /* Roșu aprins */
-    margin-bottom: 20px;
-    min-height: 1.2em;
-}
-
-/* Stilul pentru Bradul ASCII */
-#pixel-tree {
-    font-size: 1.2em;
-    line-height: 1.2;
-    color: #2ecc71; /* Verde */
-    white-space: pre; /* Păstrează spațiile pentru ASCII art */
-    text-align: left; /* Aliniat la stânga blocului, dar blocul e centrat */
-    display: inline-block;
-}
-
 /* --- Containerul pentru Animația din Modal --- */
 #animation-container {
-    /* Ascuns inițial, apare când apăsăm butonul */
     display: none; 
     margin-top: 20px;
-    padding: 20px;
-    background-color: #1a1a2e; /* Un fundal închis contrastant */
-    border: 3px solid var(--gold);
+    padding: 15px;
+    background-color: #0f0f1a; /* Puțin mai închis decât modalul */
+    border: 2px solid var(--gold);
     border-radius: 10px;
     text-align: center;
+    position: relative; /* Pentru zăpadă */
+    overflow: hidden;
+    min-height: 350px; /* Spațiu rezervat pentru brad */
 }
 
 /* Textul IT'S TIME */
 #time-text-modal {
-    font-family: 'Courier New', monospace;
-    font-size: 2em;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 2.5em;
     font-weight: bold;
     color: #e74c3c;
     min-height: 1.2em;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px #000;
 }
 
 /* --- Grila pentru Pixel Art --- */
 #pixel-grid-container {
     display: grid;
-    /* Vom seta coloanele dinamic în JS, dar punem un default */
-    grid-template-columns: repeat(25, 10px); 
-    gap: 1px; /* Spațiu mic între pixeli pentru aspectul de grilă */
-    justify-content: center; /* Centrăm bradul */
-    margin-top: 10px;
-    background-color: #fff; /* Fundalul alb al grilei din poza ta */
+    gap: 1px;
+    justify-content: center;
+    margin: 10px auto 0 auto;
+    background-color: #fff;
     padding: 5px;
     border-radius: 5px;
-    width: fit-content; /* Să fie fix cât bradul */
-    margin-left: auto;
-    margin-right: auto;
+    width: fit-content;
+    /* Dacă e ecranul super mic, permite scroll orizontal la brad */
+    max-width: 100%;
+    overflow-x: auto; 
 }
 
 /* Un singur "pixel" */
 .pixel {
     width: 10px;
     height: 10px;
-    background-color: transparent; /* Transparent implicit */
+    background-color: transparent;
 }
 
-/* Culorile Pixelilor (bazate pe imaginea ta) */
+/* Culorile Pixelilor */
 .p-black { background-color: #000000; }
 .p-green { background-color: #22b14c; }
 .p-yellow { background-color: #fff200; }
 .p-red { background-color: #ed1c24; }
 .p-blue { background-color: #00a2e8; }
 .p-brown { background-color: #885418; }
-/* 'X' înseamnă transparent/alb în grilă */
 .p-X { background-color: transparent; }
-/* Culori NOI pentru detaliere */
-.p-darkgreen { background-color: #125e28; } /* Umbra crengilor */
-.p-white { background-color: #ffffff; }     /* Zăpadă sau sclipiri */
-.p-gold { background-color: #ffd700; }      /* Auriu mai intens pt stea */
 
-/* =========================================
-   MODIFICĂRI FESTIVE PENTRU ZIUA 1
-========================================= */
-
-/* 1. Textul IT'S TIME mai festiv */
-#time-text-modal {
-    font-family: 'Mountains of Christmas', cursive; /* Folosim fontul festiv */
-    font-size: 3em; /* Mai mare */
-    font-weight: bold;
-    color: #e74c3c;
-    min-height: 1.5em;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px #000; /* O mică umbră să iasă în evidență */
-}
-
-/* 2. Animație de Sclipire pentru Luminițe */
+/* Animație Sclipire */
 @keyframes twinkle {
     0%, 100% { opacity: 1; filter: brightness(1); box-shadow: 0 0 2px currentColor; }
-    50% { opacity: 0.8; filter: brightness(1.8); box-shadow: 0 0 10px currentColor; }
+    50% { opacity: 0.8; filter: brightness(1.8); box-shadow: 0 0 8px currentColor; }
 }
-
-/* Aplicăm sclipirea doar la culorile care sunt "lumini" */
 .p-yellow, .p-red, .p-blue {
-    /* Timpi diferiți ca să nu sclipească toate deodată */
     animation: twinkle 2s infinite alternate ease-in-out;
 }
 .p-red { animation-delay: 0.5s; }
 .p-blue { animation-delay: 1s; }
 
-/* 3. Asigurăm că containerul de animație e relativ pentru zăpadă */
-#animation-container {
-    position: relative; /* Necesar pentru ca zăpada să cadă ÎN el */
-    overflow: hidden; /* Să nu iasă zăpada afară din cutie */
-    min-height: 400px; /* Înălțime minimă ca să aibă loc bradul */
-}
-
-/* 4. Stilul Fulgilor de Zăpadă */
+/* Fulgi de Zăpadă */
 .snowflake {
     position: absolute;
     top: -10px;
     color: #FFF;
     font-size: 1em;
     opacity: 0.8;
-    pointer-events: none; /* Să nu poți da click pe ei */
-    animation: fall linear forwards; /* 'forwards' înseamnă că rămân jos când termină */
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+@keyframes fall {
+    to { transform: translateY(450px) rotate(360deg); }
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(450px) rotate(360deg); /* Cad 450px în jos și se rotesc */
+/* =========================================
+   OPTIMIZĂRI PENTRU MOBIL (S22 Ultra & Altele)
+========================================= */
+@media screen and (max-width: 768px) {
+    body { padding: 10px; }
+    
+    h1 { font-size: 2.2em; }
+    
+    .calendar-grid { 
+        gap: 10px; 
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+    
+    .day-card { 
+        height: 80px; 
+        font-size: 1.5em; 
+    }
+
+    /* Modalul ocupă aproape tot ecranul pe mobil */
+    .modal-content {
+        width: 95%;
+        margin: 3vh auto; 
+        padding: 40px 15px 15px 15px; /* Loc sus pt X */
+    }
+
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 40px; /* Mai mare pt deget */
+        padding: 5px;
+    }
+
+    #time-text-modal {
+        font-size: 2em;
     }
 }
