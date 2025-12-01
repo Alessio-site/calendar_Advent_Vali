@@ -97,3 +97,172 @@ img, video {
     border-radius: 10px;
     margin-top: 10px;
 }
+
+/* --- Butonul Roșu de Crăciun --- */
+.christmas-btn {
+    background-color: #c0392b;
+    color: white;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 1.5em;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px #962d22;
+    transition: all 0.1s;
+    margin-top: 20px;
+}
+
+.christmas-btn:active {
+    box-shadow: 0 2px #962d22;
+    transform: translateY(3px);
+}
+
+/* --- Ecranul Full Screen (Overlay) --- */
+#surprise-overlay {
+    display: none; /* Ascuns inițial */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999; /* Peste orice altceva */
+    color: white;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+}
+
+/* Stilul pentru IT'S TIME */
+#time-text {
+    font-size: 3em;
+    font-weight: bold;
+    color: #e74c3c; /* Roșu aprins */
+    margin-bottom: 20px;
+    min-height: 1.2em;
+}
+
+/* Stilul pentru Bradul ASCII */
+#pixel-tree {
+    font-size: 1.2em;
+    line-height: 1.2;
+    color: #2ecc71; /* Verde */
+    white-space: pre; /* Păstrează spațiile pentru ASCII art */
+    text-align: left; /* Aliniat la stânga blocului, dar blocul e centrat */
+    display: inline-block;
+}
+
+/* --- Containerul pentru Animația din Modal --- */
+#animation-container {
+    /* Ascuns inițial, apare când apăsăm butonul */
+    display: none; 
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #1a1a2e; /* Un fundal închis contrastant */
+    border: 3px solid var(--gold);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Textul IT'S TIME */
+#time-text-modal {
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    font-weight: bold;
+    color: #e74c3c;
+    min-height: 1.2em;
+    margin-bottom: 15px;
+}
+
+/* --- Grila pentru Pixel Art --- */
+#pixel-grid-container {
+    display: grid;
+    /* Vom seta coloanele dinamic în JS, dar punem un default */
+    grid-template-columns: repeat(25, 10px); 
+    gap: 1px; /* Spațiu mic între pixeli pentru aspectul de grilă */
+    justify-content: center; /* Centrăm bradul */
+    margin-top: 10px;
+    background-color: #fff; /* Fundalul alb al grilei din poza ta */
+    padding: 5px;
+    border-radius: 5px;
+    width: fit-content; /* Să fie fix cât bradul */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Un singur "pixel" */
+.pixel {
+    width: 10px;
+    height: 10px;
+    background-color: transparent; /* Transparent implicit */
+}
+
+/* Culorile Pixelilor (bazate pe imaginea ta) */
+.p-black { background-color: #000000; }
+.p-green { background-color: #22b14c; }
+.p-yellow { background-color: #fff200; }
+.p-red { background-color: #ed1c24; }
+.p-blue { background-color: #00a2e8; }
+.p-brown { background-color: #885418; }
+/* 'X' înseamnă transparent/alb în grilă */
+.p-X { background-color: transparent; }
+/* Culori NOI pentru detaliere */
+.p-darkgreen { background-color: #125e28; } /* Umbra crengilor */
+.p-white { background-color: #ffffff; }     /* Zăpadă sau sclipiri */
+.p-gold { background-color: #ffd700; }      /* Auriu mai intens pt stea */
+
+/* =========================================
+   MODIFICĂRI FESTIVE PENTRU ZIUA 1
+========================================= */
+
+/* 1. Textul IT'S TIME mai festiv */
+#time-text-modal {
+    font-family: 'Mountains of Christmas', cursive; /* Folosim fontul festiv */
+    font-size: 3em; /* Mai mare */
+    font-weight: bold;
+    color: #e74c3c;
+    min-height: 1.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px #000; /* O mică umbră să iasă în evidență */
+}
+
+/* 2. Animație de Sclipire pentru Luminițe */
+@keyframes twinkle {
+    0%, 100% { opacity: 1; filter: brightness(1); box-shadow: 0 0 2px currentColor; }
+    50% { opacity: 0.8; filter: brightness(1.8); box-shadow: 0 0 10px currentColor; }
+}
+
+/* Aplicăm sclipirea doar la culorile care sunt "lumini" */
+.p-yellow, .p-red, .p-blue {
+    /* Timpi diferiți ca să nu sclipească toate deodată */
+    animation: twinkle 2s infinite alternate ease-in-out;
+}
+.p-red { animation-delay: 0.5s; }
+.p-blue { animation-delay: 1s; }
+
+/* 3. Asigurăm că containerul de animație e relativ pentru zăpadă */
+#animation-container {
+    position: relative; /* Necesar pentru ca zăpada să cadă ÎN el */
+    overflow: hidden; /* Să nu iasă zăpada afară din cutie */
+    min-height: 400px; /* Înălțime minimă ca să aibă loc bradul */
+}
+
+/* 4. Stilul Fulgilor de Zăpadă */
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #FFF;
+    font-size: 1em;
+    opacity: 0.8;
+    pointer-events: none; /* Să nu poți da click pe ei */
+    animation: fall linear forwards; /* 'forwards' înseamnă că rămân jos când termină */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(450px) rotate(360deg); /* Cad 450px în jos și se rotesc */
+    }
+}
