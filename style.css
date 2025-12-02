@@ -272,3 +272,6 @@ img, video {
         font-size: 2em;
     }
 }
+
+/* Culoare NOUĂ pentru burtica broaștei */
+.p-lightgreen { background-color: #99e550; } /* Un verde deschis, gălbui */
