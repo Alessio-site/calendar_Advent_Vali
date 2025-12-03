@@ -93,7 +93,30 @@ const adventData = [
                 (Puțin cam prea șiropos pentru tine, așa că: te urăsc! Echilibrez oleacă balanța =) )
             </p>
 
-            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/broasca_craciun.png')">🐸 Vezi Surpriza 🎅</button>
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/frog_photo_2.png')">🐸 Vezi Surpriza 🎅</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
+    { 
+        day: 3, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Vali! <3<br>
+                În primul rând, <strong>Crăciun Fericit!</strong> 🎄<br>
+                Iar în al doilea rând, știu că te stresezi foarte mult pentru facultate, dar în această zi de 3 Decembrie îți sugerez să te bucuri cât mai mult și să faci ce îți place: filme, jocuri (orice!) și, mai ales, somn. Gata cu nopțile nedormite!
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Nu uita să te bucuri alături de filmele de Crăciun mult iubite. =)
+            </p>
+            <p style="font-size: 0.9em; color: #aaa; margin-top: 15px;">
+                Momentan, sincer, nu mai știu ce să zic decât... distracție plăcutăăă!!
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/laptop_ceai.png')">☕ Vezi Surpriza 🎮</button>
 
             <div id="animation-container">
                 <div id="time-text-modal"></div>
@@ -167,21 +190,32 @@ function startSurprise(artName, textToShow, imagePath = null) {
     // Funcția care decide ce afișăm (Poză sau Pixel Art)
     const showContent = () => {
         if (imagePath) {
-            // === LOGICA PENTRU POZĂ (ZIUA 2) ===
+            // === LOGICA PENTRU POZĂ (ZIUA 2, 3 etc.) ===
             const img = document.createElement('img');
             img.src = imagePath;
             
-            // MODIFICARE: Imaginea ocupă tot spațiul
+            // MODIFICARE: Setări pentru FIT (încadrare perfectă)
             img.style.width = '100%'; 
             img.style.height = 'auto'; 
+            img.style.maxHeight = '60vh'; 
+            img.style.objectFit = 'contain'; 
+            
             img.style.borderRadius = '10px';
-            img.style.display = 'block'; // Elimină spațiul mic de sub imagini
+            img.style.display = 'block'; 
+            img.style.margin = '0 auto'; 
             img.style.animation = 'fadeIn 1s';
             
-            // Eliminăm padding-ul containerului ca poza să atingă marginile
+            // --- NOU: ADĂUGĂM CLICK PENTRU FULL SCREEN ---
+            img.style.cursor = 'zoom-in'; // Arată că se poate da click
+            img.onclick = function() {
+                openFullscreen(imagePath);
+            };
+            
+            // Container styles
+            gridContainer.style.display = 'block';
             gridContainer.style.padding = '0';
             gridContainer.style.backgroundColor = 'transparent'; 
-            gridContainer.style.border = 'none'; // Opțional: scoate bordura albă dacă există
+            gridContainer.style.border = 'none'; 
             
             gridContainer.appendChild(img);
             
@@ -202,15 +236,60 @@ function startSurprise(artName, textToShow, imagePath = null) {
         }
     };
 
-    // Dacă avem text, îl scriem. Dacă NU (cazul Ziua 2), afișăm direct poza.
     if (textToShow && textToShow.length > 0) {
         typeWriter(textToShow, "time-text-modal", 100, showContent);
     } else {
-        // Ascundem div-ul de text ca să nu ocupe spațiu degeaba
         timeText.style.display = 'none';
         showContent();
     }
 }
+
+// ==============================
+// LOGICA FULL SCREEN (NOU)
+// ==============================
+function openFullscreen(imageSrc) {
+    // Verificăm dacă overlay-ul există deja, dacă nu îl creăm
+    let overlay = document.getElementById('fullscreen-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'fullscreen-overlay';
+        overlay.innerHTML = `
+            <span class="fs-close-btn">&times;</span>
+            <img id="fullscreen-img" src="">
+        `;
+        document.body.appendChild(overlay);
+
+        // Click pe fundal sau pe X închide
+        overlay.onclick = function(e) {
+            if (e.target !== document.getElementById('fullscreen-img')) {
+                closeFullscreen();
+            }
+        };
+        document.querySelector('.fs-close-btn').onclick = closeFullscreen;
+    }
+
+    const fsImg = document.getElementById('fullscreen-img');
+    fsImg.src = imageSrc;
+    overlay.style.display = 'flex';
+}
+
+function closeFullscreen() {
+    const overlay = document.getElementById('fullscreen-overlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+    }
+}
+
+// Ascultăm tasta ESCAPE pentru a ieși din full screen
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeFullscreen();
+    }
+});
+
+// ==============================
+// FUNCȚII AUXILIARE EXISTENTE
+// ==============================
 
 function startSnowfall(container) {
     const numberOfFlakes = 30; 
@@ -229,7 +308,6 @@ function startSnowfall(container) {
 function typeWriter(text, elementId, speed, callback) {
     let i = 0;
     const element = document.getElementById(elementId);
-    // Ne asigurăm că elementul e vizibil
     element.style.display = 'block';
     
     function type() {

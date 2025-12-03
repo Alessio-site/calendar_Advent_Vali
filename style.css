@@ -275,3 +275,47 @@ img, video {
 
 /* Culoare NOUĂ pentru burtica broaștei */
 .p-lightgreen { background-color: #99e550; } /* Un verde deschis, gălbui */
+
+/* --- Stiluri pentru Full Screen (Lightbox) --- */
+#fullscreen-overlay {
+    display: none; /* Ascuns implicit */
+    position: fixed;
+    z-index: 9999; /* Cel mai de sus strat */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Aproape negru complet */
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out; /* Arată că poți ieși */
+}
+
+#fullscreen-img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    cursor: default; /* Pe poză cursorul e normal */
+    animation: zoomIn 0.3s ease;
+}
+
+.fs-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1c40f;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fs-close-btn:hover {
+    color: #fff;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
