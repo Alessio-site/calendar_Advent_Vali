@@ -15,7 +15,7 @@ const closeBtn = document.querySelector(".close-btn");
 const gridColumns = 32; 
 
 const pixelArtCollection = {
-    // 1. BRADUL (Ziua 1) - Rămâne Pixel Art
+    // 1. BRADUL (Ziua 1)
     tree: [
         "XXXXXXXXXXXXXXXKXXXXXXXXXXXXXXXX",
         "XXXXXXXXXXXXXXKYKXXXXXXXXXXXXXXX",
@@ -124,6 +124,33 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 4, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Hellooo, girl! <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Astăzi vreau să îți zic că sunt mândru de tine și te felicit că te-ai chinuit și, într-un final, ai reușit să faci la SI (știi tu bine ce). Te invidiez pentru asta, eu cel mai probabil aș fi renunțat, deci bravooo! 👏
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Eu zic că acum meriți să te bucuri, să te joci, să vezi un film, absolut orice îți place.
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                A, și btw, mersi mult pentru ajutor la orice și oricând, inclusiv acum la AI.
+            </p>
+            <p style="font-size: 0.9em; color: #f1c40f; margin-top: 15px;">
+                P.S. Foarte cool stickerul, e pe laptop pe vecie! =)
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/vali_bate_anca.png')">Surprise</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
@@ -190,7 +217,7 @@ function startSurprise(artName, textToShow, imagePath = null) {
     // Funcția care decide ce afișăm (Poză sau Pixel Art)
     const showContent = () => {
         if (imagePath) {
-            // === LOGICA PENTRU POZĂ (ZIUA 2, 3 etc.) ===
+            // === LOGICA PENTRU POZĂ (ZIUA 2, 3, 4 etc.) ===
             const img = document.createElement('img');
             img.src = imagePath;
             
@@ -205,8 +232,8 @@ function startSurprise(artName, textToShow, imagePath = null) {
             img.style.margin = '0 auto'; 
             img.style.animation = 'fadeIn 1s';
             
-            // --- NOU: ADĂUGĂM CLICK PENTRU FULL SCREEN ---
-            img.style.cursor = 'zoom-in'; // Arată că se poate da click
+            // --- CLICK PENTRU FULL SCREEN ---
+            img.style.cursor = 'zoom-in'; 
             img.onclick = function() {
                 openFullscreen(imagePath);
             };
@@ -245,10 +272,9 @@ function startSurprise(artName, textToShow, imagePath = null) {
 }
 
 // ==============================
-// LOGICA FULL SCREEN (NOU)
+// LOGICA FULL SCREEN
 // ==============================
 function openFullscreen(imageSrc) {
-    // Verificăm dacă overlay-ul există deja, dacă nu îl creăm
     let overlay = document.getElementById('fullscreen-overlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -259,7 +285,6 @@ function openFullscreen(imageSrc) {
         `;
         document.body.appendChild(overlay);
 
-        // Click pe fundal sau pe X închide
         overlay.onclick = function(e) {
             if (e.target !== document.getElementById('fullscreen-img')) {
                 closeFullscreen();
@@ -280,7 +305,6 @@ function closeFullscreen() {
     }
 }
 
-// Ascultăm tasta ESCAPE pentru a ieși din full screen
 document.addEventListener('keydown', function(event) {
     if (event.key === "Escape") {
         closeFullscreen();
@@ -288,7 +312,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 // ==============================
-// FUNCȚII AUXILIARE EXISTENTE
+// FUNCȚII AUXILIARE
 // ==============================
 
 function startSnowfall(container) {
