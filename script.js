@@ -151,6 +151,27 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 5, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Vali <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Din păcate uitasem să fac pentru azi, așa că o să las doar un desen drăguț. Hai că mai e puțin până la vacanță! =)
+            </p>
+            <p style="font-size: 1.2em; color: #f1c40f; margin-top: 15px;">
+                <strong>#rezistăm</strong>
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/vali_si_zapada.png')">❄️ Vezi Desenul ❄️</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
