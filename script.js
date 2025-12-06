@@ -172,6 +172,24 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 6, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Vali! <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Azi nimic special, doar weekend plăcut și zi fericită de Moș Nicolaeee!!! 🎅
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/mos_nicolae.png')">🎅 Vezi Surpriza 🎅</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
