@@ -238,6 +238,30 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 9, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Vali <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Singurul lucru care pot spune că e pozitiv e că pe săptămâna asta am scăpat de IRM și suntem și mai aproape de CRĂCIUN! ❄️❄️❄️
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Cu ocazia asta, îți urez odihnă plăcută și sper că te distrezi! =)
+            </p>
+            <p style="font-size: 0.9em; color: #aaa; margin-top: 10px;">
+                Nu știu ce să mai zic, dar atașez o poză drăguță! =)
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/brad_alessio.jpg')">🎄 Vezi Poza 🎄</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
