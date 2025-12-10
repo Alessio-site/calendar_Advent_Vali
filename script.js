@@ -262,6 +262,30 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 10, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Vali <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Sper că a fost o zi bună pentru tine! Aici prefer să nu las idei proaste, dar zic doar că probabil mă apuc de proiectul la Python.
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Sper că ziua ta a fost (sau poate încă este) una foarte bună!
+            </p>
+            <p style="font-size: 1.2em; color: #f1c40f; margin-top: 15px;">
+                <strong>Încă 15 zile! ❤️</strong>
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/poza_ferrari.jpg')">🏎️ Vezi Poza 🏎️</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
