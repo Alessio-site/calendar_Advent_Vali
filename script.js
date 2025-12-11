@@ -286,6 +286,27 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 11, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Hello, Girllll <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Pe azi chiar nu am nimic de zis decât <strong>SUCCES la AI</strong> și Doamne ajută să fie bine! 🙏
+            </p>
+            <p style="font-size: 1.2em; color: #f1c40f; margin-top: 15px;">
+                <strong>P.S. -14 ❤️</strong>
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/poza_day11.jpg')">🎄 Vezi Poza 🎄</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
