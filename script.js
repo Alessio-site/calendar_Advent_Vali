@@ -93,7 +93,7 @@ const adventData = [
                 (Puțin cam prea șiropos pentru tine, așa că: te urăsc! Echilibrez oleacă balanța =) )
             </p>
 
-            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/frog_photo_2.png')">🐸 Vezi Surpriza 🎅</button>
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/broasca_craciun.png')">🐸 Vezi Surpriza 🎅</button>
 
             <div id="animation-container">
                 <div id="time-text-modal"></div>
@@ -307,6 +307,30 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 12, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Vali <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Sper că ai avut o zi extraordinară și încă oleacă și o să vezi cadou =))
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Până atunci îți las video asta cool!
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; color: #f1c40f;">
+                <strong>P.S. Încă 13 zile ❤️</strong>
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'https://quickshare.samsungcloud.com/dXHeBwYgFHZd')">🔗 Deschide Linkul 🔗</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
@@ -370,41 +394,121 @@ function startSurprise(artName, textToShow, imagePath = null) {
     gridContainer.style.gridTemplateColumns = '';
     gridContainer.style.padding = '5px'; // Reset padding default
 
-    // Funcția care decide ce afișăm (Poză sau Pixel Art)
+    // Funcția care decide ce afișăm (Link extern, Poză, Video sau Pixel Art)
     const showContent = () => {
         if (imagePath) {
-            // === LOGICA PENTRU POZĂ (ZIUA 2, 3, 4 etc.) ===
-            const img = document.createElement('img');
-            img.src = imagePath;
+            // Verificăm dacă e link extern, video sau imagine
+            const isExternalLink = imagePath.startsWith('http://') || imagePath.startsWith('https://');
+            const isVideo = imagePath.endsWith('.mp4') || imagePath.endsWith('.webm') || imagePath.endsWith('.ogg');
             
-            // MODIFICARE: Setări pentru FIT (încadrare perfectă)
-            img.style.width = '100%'; 
-            img.style.height = 'auto'; 
-            img.style.maxHeight = '60vh'; 
-            img.style.objectFit = 'contain'; 
-            
-            img.style.borderRadius = '10px';
-            img.style.display = 'block'; 
-            img.style.margin = '0 auto'; 
-            img.style.animation = 'fadeIn 1s';
-            
-            // --- CLICK PENTRU FULL SCREEN ---
-            img.style.cursor = 'zoom-in'; 
-            img.onclick = function() {
-                openFullscreen(imagePath);
-            };
-            
-            // Container styles
-            gridContainer.style.display = 'block';
-            gridContainer.style.padding = '0';
-            gridContainer.style.backgroundColor = 'transparent'; 
-            gridContainer.style.border = 'none'; 
-            
-            gridContainer.appendChild(img);
-            
-            // Adăugăm ninsoare
-            startSnowfall(animContainer);
+            if (isExternalLink) {
+                // === LOGICA PENTRU LINK EXTERN ===
+                // Creăm un wrapper pentru a forța lățimea și alinierea
+                const wrap = document.createElement('div');
+                wrap.style.display = 'flex';
+                wrap.style.justifyContent = 'center';
+                wrap.style.width = '100%';
+                wrap.style.boxSizing = 'border-box';
+                wrap.style.padding = '10px 0';
 
+                const btn = document.createElement('button');
+                btn.className = 'christmas-btn';
+                btn.textContent = '🔗 Deschide linkul (QuickShare)';
+                btn.onclick = function() { window.open(imagePath, '_blank', 'noopener'); };
+                btn.style.display = 'inline-block';
+                btn.style.maxWidth = '420px';
+                btn.style.width = '100%';
+
+                // Backup: text link copyable
+                const backup = document.createElement('div');
+                backup.style.marginTop = '10px';
+                backup.style.textAlign = 'center';
+                backup.style.color = '#f1c40f';
+                backup.style.fontSize = '0.95em';
+
+                const urlSpan = document.createElement('span');
+                urlSpan.textContent = imagePath;
+                urlSpan.style.wordBreak = 'break-all';
+                urlSpan.style.display = 'block';
+                urlSpan.style.marginBottom = '6px';
+                urlSpan.style.color = '#fff';
+
+                const copyBtn = document.createElement('button');
+                copyBtn.textContent = 'Copiază link';
+                copyBtn.className = 'christmas-btn';
+                copyBtn.style.display = 'inline-block';
+                copyBtn.style.maxWidth = '200px';
+                copyBtn.onclick = function() {
+                    navigator.clipboard && navigator.clipboard.writeText(imagePath).then(() => {
+                        copyBtn.textContent = 'Copiat!';
+                        setTimeout(() => copyBtn.textContent = 'Copiază link', 1500);
+                    });
+                };
+
+                backup.appendChild(urlSpan);
+                backup.appendChild(copyBtn);
+
+                gridContainer.style.display = 'block';
+                gridContainer.style.padding = '10px';
+                gridContainer.style.backgroundColor = 'transparent';
+                gridContainer.style.border = 'none';
+                gridContainer.style.width = '100%';
+
+                wrap.appendChild(btn);
+                gridContainer.appendChild(wrap);
+                gridContainer.appendChild(backup);
+                startSnowfall(animContainer);
+            } else if (isVideo) {
+                // === LOGICA PENTRU VIDEO ===
+                const video = document.createElement('video');
+                video.src = imagePath;
+                video.controls = true;
+                video.autoplay = true;
+                
+                video.style.width = '100%'; 
+                video.style.height = 'auto'; 
+                video.style.maxHeight = '60vh'; 
+                video.style.objectFit = 'contain'; 
+                video.style.borderRadius = '10px';
+                video.style.display = 'block'; 
+                video.style.margin = '0 auto'; 
+                video.style.animation = 'fadeIn 1s';
+                
+                gridContainer.style.display = 'block';
+                gridContainer.style.padding = '0';
+                gridContainer.style.backgroundColor = 'transparent'; 
+                gridContainer.style.border = 'none'; 
+                
+                gridContainer.appendChild(video);
+                startSnowfall(animContainer);
+            } else {
+                // === LOGICA PENTRU POZĂ (ZIUA 2, 3, 4 etc.) ===
+                const img = document.createElement('img');
+                img.src = imagePath;
+                
+                img.style.width = '100%'; 
+                img.style.height = 'auto'; 
+                img.style.maxHeight = '60vh'; 
+                img.style.objectFit = 'contain'; 
+                
+                img.style.borderRadius = '10px';
+                img.style.display = 'block'; 
+                img.style.margin = '0 auto'; 
+                img.style.animation = 'fadeIn 1s';
+                
+                img.style.cursor = 'zoom-in'; 
+                img.onclick = function() {
+                    openFullscreen(imagePath);
+                };
+                
+                gridContainer.style.display = 'block';
+                gridContainer.style.padding = '0';
+                gridContainer.style.backgroundColor = 'transparent'; 
+                gridContainer.style.border = 'none'; 
+                
+                gridContainer.appendChild(img);
+                startSnowfall(animContainer);
+            }
         } else {
             // === LOGICA PENTRU PIXEL ART (ZIUA 1) ===
             gridContainer.style.display = 'grid';
