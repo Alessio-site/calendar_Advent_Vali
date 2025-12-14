@@ -352,6 +352,24 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 14, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Valii <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Mâine e ziua cea mare =) Sper că te-ai bucurat de weekendul ăsta, acum îți atașez ceva frumos. Have funnn!!!
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/poza1_day14.jpg||assets/poza2_day14.jpg')">🎉 Deschide Pozele 🎉</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
@@ -421,6 +439,7 @@ function startSurprise(artName, textToShow, imagePath = null) {
             // Verificăm dacă e link extern, video sau imagine
             const isExternalLink = imagePath.startsWith('http://') || imagePath.startsWith('https://');
             const isVideo = imagePath.endsWith('.mp4') || imagePath.endsWith('.webm') || imagePath.endsWith('.ogg');
+            const isMultiImage = imagePath.includes('||');
             
             if (isExternalLink) {
                 // === LOGICA PENTRU LINK EXTERN ===
@@ -478,6 +497,34 @@ function startSurprise(artName, textToShow, imagePath = null) {
                 wrap.appendChild(btn);
                 gridContainer.appendChild(wrap);
                 gridContainer.appendChild(backup);
+                startSnowfall(animContainer);
+            } else if (isMultiImage) {
+                // === LOGICA PENTRU MAI MULTE POZE ===
+                const paths = imagePath.split('||').map(s => s.trim()).filter(Boolean);
+                const gallery = document.createElement('div');
+                gallery.style.display = 'flex';
+                gallery.style.flexWrap = 'wrap';
+                gallery.style.justifyContent = 'center';
+                gallery.style.gap = '10px';
+
+                paths.forEach(p => {
+                    const img = document.createElement('img');
+                    img.src = p;
+                    img.style.maxWidth = '45%';
+                    img.style.width = '100%';
+                    img.style.height = 'auto';
+                    img.style.objectFit = 'contain';
+                    img.style.borderRadius = '8px';
+                    img.style.cursor = 'zoom-in';
+                    img.onclick = () => openFullscreen(p);
+                    gallery.appendChild(img);
+                });
+
+                gridContainer.style.display = 'block';
+                gridContainer.style.padding = '10px';
+                gridContainer.style.backgroundColor = 'transparent';
+                gridContainer.style.border = 'none';
+                gridContainer.appendChild(gallery);
                 startSnowfall(animContainer);
             } else if (isVideo) {
                 // === LOGICA PENTRU VIDEO ===
