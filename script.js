@@ -391,6 +391,48 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 16, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Valiii <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Suntem pe 17 și uitasem să fac, sorryy! Atașez o poză drăguță, chiar dacă ai și tu ceva asemănător =)
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/brad_MallMoldova.jpg')">🎄 Vezi Poza 🎄</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
+    { 
+        day: 17, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Helloooo, ce faci? <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Sper că te distrezi în timp ce te joci RDR2 și e totul fain! Azi am făcut și pentru ziua de ieri deoarece uitasem (sorry).
+            </p>
+            <p style="font-size: 1.2em; color: #f1c40f; margin-top: 15px;">
+                <strong>HAVE FUNNN ❤️</strong>
+            </p>
+            <p style="font-size: 0.9em; color: #aaa; margin-top: 10px;">
+                P.S. Atașez și eu o poză cute!
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/bradMare_Alessio.jpg')">🎄 Vezi Poza 🎄</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
