@@ -433,6 +433,30 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 18, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bună, Valii <3
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Nimic de zis pe azi decât că nu reușesc nimic pe IRM, dar aia e... Important e că mai sunt <strong>7 zile până la CRĂCIUNNNN!</strong> 🎄
+            </p>
+            <p style="font-size: 1.2em; color: #f1c40f; margin-top: 15px;">
+                <strong>Have fun ❤️</strong>
+            </p>
+            <p style="font-size: 0.9em; color: #aaa; margin-top: 10px;">
+                P.S. Sper că te distrezi pe RDR2! =)
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/brad_camin.jpg')">🎄 Vezi Poza 🎄</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
