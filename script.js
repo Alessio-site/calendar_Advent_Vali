@@ -457,6 +457,21 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 19, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Helloo Valii, mai sunt inca 6 zile si vreau sa fac o considerare, din pacate nu simt Craciunu la fel de tare cum as vrea=(, sper totusi sa dau comeback zilele astea, intre timp iti las o poza cutee
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/poza_very_cute.jpg')">📷 Vezi Poza Cute 📷</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
