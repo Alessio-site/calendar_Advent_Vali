@@ -472,6 +472,42 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 20, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Helloooo, VACANTAAA, sorry, uitasem sa-l pun, dar incerc sa-ti las o poza draguta=)
+            </p>
+            <p style="font-size: 0.95em; color: #aaa; margin-top: 8px;">
+                P.S. mai e inca putin pana la CRACIUNNNN &lt;3
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/bradut.jpg')">📷 Vezi Poza 📷</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
+    { 
+        day: 21, 
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Hellooooo, distracti eplacuta in vacanta=) Tot ce ma gandeam zilele astea ca faptul ca Craciunu a fost foarte comercializat ajuta mult copiii sa afle de acesta si sa se bucure mai tare, iar eu sper ca o sa reincep sa simt la fel de tare cand o sa ajung eu la propriu mos craciun
+            </p>
+            <p style="font-size: 0.95em; color: #aaa; margin-top: 8px;">
+                P.S. Mai e foarteeee putin(am gasit o poza draguta sa atasez)
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/disney_cute.jpg')">📷 Vezi Poza 📷</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        ` 
+    },
     // ... restul zilelor ...
 ];
 
