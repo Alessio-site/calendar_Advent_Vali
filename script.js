@@ -508,6 +508,42 @@ const adventData = [
             </div>
         ` 
     },
+    { 
+        day: 22,
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bunaa, suntem foarte aproapeee de craciunnnn😍, nu am facut nimic deosebit decat sa merg la sala, deci na=)), sper ca vacanta ta merge grozav (eu am mai dat 2 prompturi la gpt sa incerc sa fac la python dar nu iesa cum as vrea=) )
+            </p>
+            <p style="font-size: 1em; line-height: 1.4; margin-top:8px;">
+                P.S. nu aveam poze si am cautat un meme dragut de pus, si sa zicem ca sunt eu acel friend=)
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/meme.jpg')">📷 Vezi Meme 📷</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        `
+    },
+    { 
+        day: 23,
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bunaaa, azi iar sala, python nimic ca am oaspeti copii mici in seara asta, deci cam foarte jale=) , iar in rest toata ziua am ajutat-o pe mama sa curete prin casa, si am realizat ca eu filme de craciun nu am vazut practic delocc=(, dar o sa incerc in seara asta sa vad ceva. Btw, cel mai important e ca ar trebui sa ningaa, tocmai de aia nu o sa fac de pe acum mesaju pentru maine care ar fi ultimul fiindca sper sa ma trezesc si sa pot face poza la zapadaaaaaaa(dne ajuta)
+            </p>
+            <p style="font-size: 1em; line-height: 1.4; margin-top:8px;">
+                P.S. Cum am precizat si zilele trecute, MAI E INCA PUTINNNNN<3
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/ajunul_ajunului_de craciun.jpg')">📷 Vezi Poza 📷</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        `
+    },
     // ... restul zilelor ...
 ];
 
