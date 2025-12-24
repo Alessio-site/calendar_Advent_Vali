@@ -544,7 +544,30 @@ const adventData = [
             </div>
         `
     },
-    // ... restul zilelor ...
+    { 
+        day: 24,
+        content: `
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Bunaaa, o scriu pentru ziua 24 chiar daca eu o scriu pe 25, deci, <strong>CRACIUNNN FERICITTTTT&lt;3</strong>
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Ma bucur mult ca am reusit sa facem calendaru asta chiar daca nu m-am tinut sa-l fac in fiecare zi din pacate =(, dar la anu o sa fie mai bine (promit).
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6;">
+                Sper sa te bucuri de aceasta magica zi de Craciuns — iti atasez ultimul video si sper sa-ti placa.
+            </p>
+            <p style="font-size: 1.1em; line-height: 1.6; color: #f1c40f; margin-top: 12px;">
+                <strong>Si pentru ultima data: CRACIUN FERICIT &lt;3</strong>
+            </p>
+
+            <button id="startBtn" class="christmas-btn" onclick="startSurprise(null, '', 'assets/video_final_day.mp4')">🎬 Vezi Video Final 🎬</button>
+
+            <div id="animation-container">
+                <div id="time-text-modal"></div>
+                <div id="pixel-grid-container"></div>
+            </div>
+        `
+    }
 ];
 
 
